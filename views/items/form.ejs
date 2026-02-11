@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/form.css">
+  <title><%= item ? "Edit Item" : "Add Item" %></title>
+</head>
+<body>
+
+  <div class="container">
+
+    <h1><%= item ? "Edit Item" : "Add Item" %></h1>
+
+    <form action="<%= item ? `/items/${item._id}/update` : '/items/new' %>"  method="POST">
+
+      <div>
+        <label>Name</label>
+        <input 
+          type="text" name="name" required placeholder="Item name" value="<%= item ? item.name : '' %>">
+      </div>
+
+      <div>
+        <label>Description</label>
+        <textarea name="description" placeholder="Item description" required ><%= item ? item.description : '' %></textarea>
+      </div>
+       
+      <div>
+        <label>Price</label>
+        <input type="number" name="price" required step="0.01" value="<%= item ? item.price : '' %>">
+      </div>
+
+      <div>
+        <label>Quantity</label>
+        <input type="number" name="quantity" min="0" value="<%= item ? item.quantity : 0 %>">
+      </div>
+
+      <div>
+        <label>Category</label>
+        <select name="category" required>
+          <% categories.forEach(category => { %>
+            <option 
+            value= "<%= category._id %>"
+            <%= item && item.category.toString() === category._id.toString() ? "selected" : "" %>
+            >
+             <%= category.name %>
+            </option>
+          <% }) %>
+        </select>
+      </div>
+
+
+       <% if (item) { %>
+        <div>
+          <label>Admin Password</label>
+          <input type="password" name="adminPassword" placeholder="Enter admin password" required />
+        </div>
+        <% } %>
+
+
+      <button type="submit">
+        <%= item ? "Update Item" : "Save Item" %>
+      </button>
+
+    </form>
+    <br>
+    <a class="back-link" href="/items">Back to Items</a>
+
+  </div>
+  
+</body>
+</html>

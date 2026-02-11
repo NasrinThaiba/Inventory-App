@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/list.css">
+    <title>Items</title>
+</head>
+
+<body>    
+    <h1>Items</h1>
+     <a href="/">Home</a>
+     <a href="/items/new">Add Item</a>
+     <ul>
+        <% items.forEach(item => { %>
+            <li>
+                <a href="/items/<%= item._id %>">
+                    <%= item.name %> (<%= item.category.name %>)
+                </a>
+            </li>
+            <% }) %>
+        </ul>
+   
+</body>
+</html>

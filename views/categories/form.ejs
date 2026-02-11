@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/form.css" >
+  <title><%= category ? "Edit Category" : "Add Category" %></title>
+</head>
+<body>
+  <div class="container">
+    <h1><%= category ? "Edit Category" : "Add Category" %></h1>
+
+  <form method="POST" action="<%= category ? `/categories/${category._id}/update` : '/categories/new' %>">
+    <div>
+      <label>Name</label>
+      <input type="text" name="name" required placeholder="Category name"  value="<%= category ? category.name : '' %>"/>
+    </div>
+
+    <div>
+      <label>Description</label>
+      <textarea name="description" required placeholder="Category description"><%= category ? category.description : '' %></textarea>
+    </div>
+
+    <% if (category) { %>
+    <div>
+      <label>Admin Password</label>
+      <input type="password" name="adminPassword" placeholder="Enter admin password" required />
+    </div>
+     <% } %>
+
+    <button type="submit"><%= category ? "Update Category" : "Save Category" %></button>
+  </form>
+
+  <br>
+  <a class="back-link" href="/categories">Back to Categories</a>
+  </div>
+</body>
+</html>
