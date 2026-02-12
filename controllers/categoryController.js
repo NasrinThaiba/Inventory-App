@@ -4,7 +4,7 @@ const Item = require("../models/item")
 
 exports.list = async (req, res) => {
     const categories = await Category.find().sort({name:1})
-    res.render("Categories/list", {categories})
+    res.render("categories/list", {categories})
 }
 
 exports.detail = async (req, res) => {
