@@ -13,7 +13,7 @@ exports.detail = async (req, res) => {
 
 exports.create_get = async (req, res) => {
     const categories = await Category.find();
-    res.render("items/form", {categories})
+    res.render("items/form", {item:null, categories})
 }
 
 exports.update_get = async (req, res) => {
